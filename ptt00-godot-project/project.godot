@@ -20,13 +20,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="one hundred thousand pixels"
+config/name="four hundred by two fifty"
 config/description="2024-05-02"
 run/main_scene="res://main.tscn"
 boot_splash/image="res://waiter/waiter100.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-boot_splash/bg_color=Color( 0.207843, 0.254902, 0.282353, 1 )
+boot_splash/bg_color=Color( 0.952941, 0.94902, 0.780392, 1 )
 config/icon="res://waiter/waiter100.png"
 
 [display]
@@ -47,5 +47,5 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.207843, 0.254902, 0.282353, 1 )
+environment/default_clear_color=Color( 0.952941, 0.94902, 0.780392, 1 )
 environment/default_environment="res://default_env.tres"

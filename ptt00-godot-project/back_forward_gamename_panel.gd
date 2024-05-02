@@ -16,7 +16,7 @@ func _ready():
 
 
 func _on_forwardbutton_pressed():
-	JavaScript.eval("location.replace('/01-build-b/');")
+	JavaScript.eval("location.replace('/01-build-a/');")
 
 func _on_backbutton_pressed():
 	JavaScript.eval("history.back();");

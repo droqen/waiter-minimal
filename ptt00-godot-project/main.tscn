@@ -18,9 +18,12 @@ margin_right = 400.0
 margin_bottom = 250.0
 
 [node name="back_forward_gamename_panel" parent="MarginContainer/CenterContainer" instance=ExtResource( 2 )]
+margin_left = 41.0
+margin_right = 358.0
 
 [node name="WaiterSetup" type="Node" parent="."]
 script = ExtResource( 3 )
-last_save_time = "18:26:44"
-unique_name = "one hundred thousand pixels"
+last_save_time = "19:18:34"
+unique_name = "four hundred by two fifty"
 todays_date = "2024-05-02"
+bg_color = Color( 0.952941, 0.94902, 0.780392, 1 )

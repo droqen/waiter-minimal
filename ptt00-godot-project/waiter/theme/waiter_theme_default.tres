@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://waiter/theme/waiter_stylebox_default.tres" type="StyleBox" id=1]
+[ext_resource path="res://droqens_fonts/quizardry.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://waiter/theme/waiter_stylebox_light.tres" type="StyleBox" id=3]
+[ext_resource path="res://waiter/theme/waiter_stylebox_dark.tres" type="StyleBox" id=4]
+[ext_resource path="res://waiter/theme/waiter_stylebox_outline.tres" type="StyleBox" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[resource]
+default_font = SubResource( 1 )
+Button/colors/font_color = Color( 0.952941, 0.94902, 0.780392, 1 )
+Button/colors/font_color_disabled = Color( 0.207843, 0.254902, 0.282353, 1 )
+Button/colors/font_color_focus = Color( 0.952941, 0.94902, 0.780392, 1 )
+Button/colors/font_color_hover = Color( 0.952941, 0.94902, 0.780392, 1 )
+Button/colors/font_color_pressed = Color( 0.952941, 0.94902, 0.780392, 1 )
+Button/styles/disabled = ExtResource( 4 )
+Button/styles/focus = ExtResource( 5 )
+Button/styles/hover = ExtResource( 3 )
+Button/styles/normal = ExtResource( 1 )
+Button/styles/pressed = ExtResource( 4 )
+Label/colors/font_color = Color( 0.952941, 0.94902, 0.780392, 1 )

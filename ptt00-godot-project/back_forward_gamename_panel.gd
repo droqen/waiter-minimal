@@ -1,6 +1,5 @@
 extends HBoxContainer
 
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -14,3 +13,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_forwardbutton_pressed():
+	JavaScript.eval("location.replace('https://www.haiku.games/01-build-b/');")
+
+func _on_backbutton_pressed():
+	JavaScript.eval("history.back();");

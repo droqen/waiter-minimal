@@ -10,29 +10,33 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "Pin",
+"language": "GDScript",
+"path": "res://waiter/pin/waiter_pin.gd"
+}, {
+"base": "Node",
+"class": "PinMan",
+"language": "GDScript",
+"path": "res://waiter/pin/waiter_pin_man.gd"
+}, {
+"base": "Node",
 "class": "WaiterSetup",
 "language": "GDScript",
-"path": "res://waiter_setup.gd"
+"path": "res://waiter/waiter_setup.gd"
 } ]
 _global_script_class_icons={
+"Pin": "",
+"PinMan": "",
 "WaiterSetup": ""
 }
 
 [application]
 
-config/name="null"
+config/name="waiter"
 config/description="2024-05-03"
 run/main_scene="res://main.tscn"
-boot_splash/image="res://waiter/waiter100.png"
-boot_splash/fullsize=false
-boot_splash/use_filter=false
-boot_splash/bg_color=Color( 0.952941, 0.94902, 0.780392, 1 )
-config/icon="res://waiter/waiter100.png"
-
-[display]
-
-window/size/width=400
-window/size/height=250
+boot_splash/bg_color=Color( 0.207843, 0.254902, 0.282353, 1 )
+config/icon="res://icon.png"
 
 [gui]
 
@@ -47,5 +51,5 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.952941, 0.94902, 0.780392, 1 )
+environment/default_clear_color=Color( 0.207843, 0.254902, 0.282353, 1 )
 environment/default_environment="res://default_env.tres"

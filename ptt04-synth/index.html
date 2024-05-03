@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>BeepBox Synth Example</title>
+		<meta name="robots" content="noindex, nofollow" />
+	</head>
+	<body>
+		<button onclick="togglePlay()">Play/Pause</button>
+		<p>View page source to see how to play this song from javascript!</p>
+		<script type="text/javascript" src="beepbox_synth.js"></script>
+		<script type="text/javascript">
+			var synth = new beepbox.Synth("9n31sbk0l00e03t2ma7g0fj07r1i0o432T0v1u11f0qg01d04w1h0E0T1v1u96f10m8q0331d35A9F3B5Q5428P9973E263978T1v1u90f20o8134q8122d35A9F9B5Q5428P9975E263978T2v1u15f10w4qw02d03w0E0b4h400000000h4g000000014h000000004h400000000p1LJdjRMh0PdjxG9BVpHY5ahhpE_4idCnDNqv5VkEny5000000");
+			synth.play(); // do it right away
+			function togglePlay() {
+				if (synth.isPlayingSong) {
+					synth.pause();
+				} else {
+					synth.play();
+				}
+			}
+		</script>
+		<!-- <iframe width="384" height="60" style="border: none;" src="https://jummb.us/player/#song=j6N08Hauntingn310s0k0l00e09t2ma7g0vj07r3O_U00000000i0o321T1v0puadf0000q0z17171d030A1F0B2Q31bdPb525R0000E2c0b263bT3v0pu03f0000q0x1821d230SU005040woo22190E1c0b9T1v0pub0f173q011d230A0F0B9Q0000Pe850R0000E2c062479T2v0pu15f180q00d030w0E0c0bcx554mw0000000000000014h0000000000000000000h4g0000000000000000008N544hk000000000000000p270IPbZzN1ay0zppvE8zAqp7EcIzM2G6SgKCbH2JcRZ3q2BjbZzRG2exozkODoZCpiHB-NX7FEuXeozEl8RcFSDlChGpyX7FP5IjbZIMi40j4P2SDhyw4NcLTzZai7piw2oComQWcpxcj5QJak0G4E1kbM2Enw5gL0axv8l6e0GckgHcO_oYyzt0hJcLQ4tq8QOfhqp7A-phppvLpCNcblTLV2rCqCBAk5s80mpC5Je0giC2pComBE8oWaRcbiSEPkg5pCoKNWBQpyIPcboZ9eE91j5MMmg5A1p0mg5A1p0mg5pp7AkLAtakydFAuAE9UOM00FAoEHQiexmEkad8mwbg5E2Qd4pt0OW1BQ3bQ17g8QOYlO97gEIcz4EFAowMNh6aoExAoQoIc8hzhzhzgzgzgzgzgzUA8W54nyl2xAyexibWd6GhWgOW1BQ2ewhQ3b0"></iframe> -->
+	</body>
+</html>

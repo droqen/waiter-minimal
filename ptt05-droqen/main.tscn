@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://waiter/waiter_setup.gd" type="Script" id=1]
+[ext_resource path="res://waiter/waiter100.png" type="Texture" id=2]
+[ext_resource path="res://waiter/pin/waiter_pin.gd" type="Script" id=3]
+[ext_resource path="res://waiter/pin/waiter_pin_man.gd" type="Script" id=4]
+[ext_resource path="res://ButtonInputExample.gd" type="Script" id=5]
+[ext_resource path="res://droqens_fonts/quizardry.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+extra_spacing_top = -4
+extra_spacing_bottom = -4
+extra_spacing_space = -4
+font_data = ExtResource( 6 )
+
+[node name="main" type="Node2D"]
+
+[node name="PinMan" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="WaiterSetup" type="Node" parent="."]
+script = ExtResource( 1 )
+last_save_time = "16:41:25"
+unique_name = "waiter"
+todays_date = "2024-05-03"
+lcontrol_dpad = true
+rcontrol_button1 = "A"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="LabelNode" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="LabelNode"]
+modulate = Color( 0.647059, 0.772549, 0.560784, 1 )
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 50.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 1 )
+text = "\"hello 
+ world\""
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ButtonInputExample" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Waiter100" type="Sprite" parent="ButtonInputExample"]
+texture = ExtResource( 2 )
+
+[node name="Pin" type="Node" parent="ButtonInputExample"]
+script = ExtResource( 3 )

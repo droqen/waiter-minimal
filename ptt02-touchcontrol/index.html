@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html><head><title>touchoncoltr</title></head><body>
+
+	Please block my touch controls!
+	<img src="waiter100.png">
+
+<script>
+	addEventListener("touchstart", function(event){ pico8_buttons_event(event, 0); }, {passive: false});
+	addEventListener("touchmove",  function(event){ pico8_buttons_event(event, 1); }, {passive: false});
+	addEventListener("touchend",   function(event){ pico8_buttons_event(event, 2); }, {passive: false});
+</script>
+
+</body></html>

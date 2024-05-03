@@ -157,9 +157,9 @@
 			console.log(engine);
 			var promise = engine.startGame(
 				{
-					"args":[],"canvasResizePolicy":2,"executable":"indexb","experimentalVK":false,"fileSizes":{"index.wasm":17865444},"focusCanvas":true,"gdnativeLibs":[],
-					"unloadAfterInit":false, // don't unload
-				}
+					"args":[], // THIS IS **REQUIRED**.
+					"executable":"indexb",
+				} 
 			);
 			console.log(promise);
 			promise.then(() => {

@@ -15,7 +15,12 @@
 			background-color: black;
 		}
 
+		div#canvas-container {
+			position: relative;
+		}
+
 		#canvas {
+			position: absolute;
 			display: block;
 			margin: 0;
 			color: white;
@@ -23,6 +28,12 @@
 
 		#canvas:focus {
 			outline: none;
+		}
+
+		#test-canvas-button {
+			position: absolute;
+			left: 30%;
+			top: 40%;
 		}
 
 		.godot {
@@ -117,10 +128,13 @@
 
 </head>
 <body>
-	<canvas id='canvas'>
-		HTML5 canvas appears to be unsupported in the current browser.<br />
-		Please try updating or use a different browser.
-	</canvas>
+	<div id='canvas-container'>
+		<canvas id='canvas'>
+			HTML5 canvas appears to be unsupported in the current browser.<br />
+			Please try updating or use a different browser.
+		</canvas>
+		<input id="test-canvas-button" type="button" value="hello" onclick="start_new_game();">
+	</div>
 	<div id='status'>
 		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
 		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
@@ -137,9 +151,30 @@
 	</div>
 
 	<script type='text/javascript' src='index.js'></script>
+	<script type='text/javascript'>
+		function start_new_game() {
+			console.log("Start New Game");
+			console.log(engine);
+			var promise = engine.startGame(
+				{
+					"args":[],"canvasResizePolicy":2,"executable":"indexb","experimentalVK":false,"fileSizes":{"indexb.pck":61888,"index.wasm":17865444},"focusCanvas":true,"gdnativeLibs":[],
+					"unloadAfterInit":false, // don't unload
+				}
+			);
+			console.log(promise);
+			promise.then(() => {
+					console.log("Hey it worked!");
+					setStatusMode('hidden');
+					initializing = false;
+				}, displayFailureNotice);
+		}
+	</script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":61888,"index.wasm":17865444},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {
+			"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":61888,"index.wasm":17865444},"focusCanvas":true,"gdnativeLibs":[],
+			"unloadAfterInit":false, // don't unload
+		};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {

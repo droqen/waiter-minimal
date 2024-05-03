@@ -150,7 +150,7 @@
 		<div id='status-notice' class='godot' style='display: none;'></div>
 	</div>
 
-	<script type='text/javascript' src='index.js'></script>
+	<script type='text/javascript' src='index.js?v=201'></script>
 	<script type='text/javascript'>
 		function start_new_game() {
 			console.log("Start New Game");
@@ -163,10 +163,10 @@
 			);
 			console.log(promise);
 			promise.then(() => {
-					console.log("Hey it worked!");
-					setStatusMode('hidden');
-					initializing = false;
-				}, displayFailureNotice);
+					console.log("Hey, omg! the game reload worked!");
+					// setStatusMode('hidden');
+					// initializing = false;
+				}, (err)=>{var err=err.message||err;console.log(err);});
 		}
 	</script>
 	<script type='text/javascript'>//<![CDATA[

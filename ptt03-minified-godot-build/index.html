@@ -150,7 +150,7 @@
 		<div id='status-notice' class='godot' style='display: none;'></div>
 	</div>
 
-	<script type='text/javascript' src='index.js?v=201'></script>
+	<script type='text/javascript' src='engine/index.js?v=202'></script>
 	<script type='text/javascript'>
 		function start_new_game() {
 			console.log("Start New Game");
@@ -158,7 +158,8 @@
 			var promise = engine.startGame(
 				{
 					"args":[], // THIS IS **REQUIRED**.
-					"executable":"indexb",
+					// "executable":"indexb",
+					"mainPack":"gamefiles/index.pck",
 				} 
 			);
 			console.log(promise);
@@ -172,8 +173,9 @@
 	<script type='text/javascript'>//<![CDATA[
 
 		const GODOT_CONFIG = {
-			"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.wasm":17865444},"focusCanvas":true,"gdnativeLibs":[],
+			"args":[],"canvasResizePolicy":2,"executable":"engine/index","experimentalVK":false,"fileSizes":{"engine/index.wasm":17865444},"focusCanvas":true,"gdnativeLibs":[],
 			"unloadAfterInit":false, // don't unload
+			"mainPack":"gamefiles/indexb2.zip",
 		};
 		var engine = new Engine(GODOT_CONFIG);
 

@@ -7,7 +7,8 @@
 	<meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1.0' />	
 	<title>one hundred thousand pixels</title>
 	<style type='text/css'>
-		#canvas { filter:blur(0.5px); transform: rotateX(10deg); transition: all 4.0s ease-in-out; }
+		#canvas-container { perspective: 500px; }
+		#canvas { filter:blur(0.5px); transform: rotateX(17.5deg); transform-origin: bottom; box-shadow: 0 4px 2px black; transition: all 4.0s ease-in-out; }
 		#canvas {
 			/* pico-8 pixel perfect */
 			image-rendering: optimizeSpeed;
@@ -20,7 +21,7 @@
 			border-image-width: 0;
 			outline: none;
 		}
-		#canvas:focus { filter:blur(0); transform: none; transition: all 0.1s ease-out; }
+		#canvas:focus { filter:blur(0); transform: none; box-shadow: none; transition: all 0.1s ease-out; }
 		#canvas.not-loaded { filter:blur(4px); opacity: 0; }
 		#canvas.never-focused { filter:blur(4px); transition: all 0.3s ease-out; }
 	</style>
@@ -47,7 +48,7 @@
 	</div>
 
 	<script type='text/javascript' src='engine/gd353.js?d=0503&v=3'></script>
-	<script type='text/javascript' src='engine-Cat.js?d=0504&v=8'></script>
+	<script type='text/javascript' src='engine-Cat.js?d=0504&v=9'></script>
 	<script type='text/javascript' src='engine/beepbox_synth.js'></script>
 	<script type='text/javascript'>
 		// Cat.boot();

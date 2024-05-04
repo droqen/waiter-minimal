@@ -9,5 +9,10 @@ func _physics_process(_delta):
 func _on_portal_body_entered(body):
 	if spawnbuf > 0: return # no effect
 	
-	body.queue_free()
-	prints("entered portal", name)
+	body.hide()
+	if WaiterCatLink.cat(self).try_goto(name):
+		prints("loading garden", name, ". . .")
+		body.queue_free()
+	else:
+		prints("failed loading garden", name, "! ! !")
+		body.show()

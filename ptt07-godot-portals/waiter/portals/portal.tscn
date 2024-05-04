@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://waiter/portals/waiter_portal.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 2, 2 )
+
+[node name="portal" type="Area2D"]
+collision_layer = 2048
+collision_mask = 512
+script = ExtResource( 1 )
+
+[node name="blk" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="blk"]
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 5.0
+margin_bottom = 5.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 10 )
+
+[connection signal="body_entered" from="." to="." method="_on_portal_body_entered"]

@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://waiter/pin/waiter_pin_man.gd"
 }, {
 "base": "Node",
+"class": "WaiterCatLink",
+"language": "GDScript",
+"path": "res://waiter/waiter_cat_link.gd"
+}, {
+"base": "Node",
 "class": "WaiterSetup",
 "language": "GDScript",
 "path": "res://waiter/waiter_setup.gd"
@@ -27,16 +32,18 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Pin": "",
 "PinMan": "",
+"WaiterCatLink": "",
 "WaiterSetup": ""
 }
 
 [application]
 
-config/name="waiter"
-config/description="2024-05-03"
 run/main_scene="res://main.tscn"
+boot_splash/image="res://waiter/waiter100.png"
+boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.207843, 0.254902, 0.282353, 1 )
-config/icon="res://icon.png"
+config/icon="res://waiter/waiter100.png"
+boot_splash/filter=false
 
 [gui]
 

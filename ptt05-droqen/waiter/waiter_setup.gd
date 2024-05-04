@@ -1,6 +1,7 @@
 tool
 extends Node
 class_name WaiterSetup
+
 export var click_to_save_changes : bool setget _do_save_changes, _get_none
 export var last_save_time : String
 export var click_for_random_name : bool setget _do_random_name, _get_none
@@ -8,6 +9,7 @@ export var click_to_autogen_date : bool setget _do_autogen_date, _get_none
 export var unique_name : String = ""
 export var todays_date : String = ""
 export var bg_color : Color = Color("#354148")
+export var icon : Texture = preload("res://waiter/waiter100.png")
 export var lcontrol_dpad : bool = false
 export var lcontrol_stick : bool = false
 export var rcontrol_numpad : bool = false
@@ -18,6 +20,7 @@ export var rcontrol_button4 : String = ""
 
 func _ready():
 	if not Engine.editor_hint:
+		
 		# pass information to js?
 		if lcontrol_dpad:
 			print("l: dpad")
@@ -41,6 +44,11 @@ func _do_save_changes(_v):
 	ProjectSettings.set("application/run/main_scene", get_tree().edited_scene_root.filename)
 	ProjectSettings.set("rendering/environment/default_clear_color", bg_color)
 	ProjectSettings.set("application/boot_splash/bg_color", bg_color)
+	if icon:
+		ProjectSettings.set("application/config/icon", icon.resource_path)
+		ProjectSettings.set("application/boot_splash/image", icon.resource_path)
+	ProjectSettings.set("application/boot_splash/fullsize", false)
+	ProjectSettings.set("application/boot_splash/filter", false)
 	last_save_time = Time.get_time_string_from_system()
 	print("OK! Save completed @ "+last_save_time)
 	property_list_changed_notify()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://waiter/waiter_setup.gd" type="Script" id=1]
 [ext_resource path="res://waiter/waiter100.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ButtonInputExample.gd" type="Script" id=5]
 [ext_resource path="res://droqens_fonts/quizardry.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://gumdrop.ogg" type="AudioStream" id=7]
+[ext_resource path="res://waiter/waiter_cat_link.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -22,11 +23,14 @@ script = ExtResource( 4 )
 
 [node name="WaiterSetup" type="Node" parent="."]
 script = ExtResource( 1 )
-last_save_time = "16:41:25"
+last_save_time = "03:08:24"
 unique_name = "waiter"
 todays_date = "2024-05-03"
 lcontrol_dpad = true
 rcontrol_button1 = "A"
+
+[node name="WaiterCatLink" type="Node" parent="WaiterSetup"]
+script = ExtResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

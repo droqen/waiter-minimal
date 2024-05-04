@@ -1,14 +1,15 @@
-const Cat = (function () {
+Cat = (function () {
 	const NONE_PACK = "pax/waiter.zip";
 	const DEFAULT_CONFIG = {
 		"args":[],"canvasResizePolicy":0,"executable":"engine/gd353","experimentalVK":false,
-		"fileSizes":{"engine/gd353.wasm":17865444},"focusCanvas":true,"gdnativeLibs":[],
+		"fileSizes":{"engine/gd353.wasm":17865444},"focusCanvas":false,"gdnativeLibs":[],
 		"unloadAfterInit":false, // don't unload
 		"mainPack":NONE_PACK,
 	};
 	
 	let engine = new Engine(DEFAULT_CONFIG);
 	let engineGameLoaded = null;
+	let gameProperties = {};
 	if (!Engine.isWebGLAvailable()) { engine = null; console.log("TODO: display 'WebGL not available' message."); }
 
 	var _prog = function(current, total) {
@@ -23,7 +24,7 @@ const Cat = (function () {
 		if (engine==null) {console.log("Cat.load failed - no engine"); return;}
 		var promise = engine.startGame({"args":[],"mainPack":pack,"onProgress":_prog});
 		promise.then(
-			()=>{console.log("Cat.load succeeded"); engineGameLoaded=(pack==NONE_PACK);},
+			()=>{console.log("Cat.load succeeded"); engineGameLoaded=(pack==NONE_PACK); gameProperties={};},
 			(err)=>{console.log("Cat.load failed - err "+(err.message||err));}
 		);
 	}
@@ -33,13 +34,34 @@ const Cat = (function () {
 		if (engineGameLoaded) { load(NONE_PATH); }
 	}
 
+	var set_gprop = function(k,v) {
+		gameProperties[k]=v;
+		console.log("updated game properties:");
+		console.log(gameProperties);
+		if (k == 'bg_color') {
+			document.getElementById("canvas-container").style.background = v;
+		}
+	}
+
+	var get_gprop = function(key, defaultValue) {
+		return gameProperties[key] || defaultValue;
+	}
+
 	load(NONE_PACK); // automatically load NONE_PACK.
 
 	return {
 		load: load,
 		unload: unload,
+		set_gprop: set_gprop,
+		get_gprop: get_gprop,
 	}
 }());
+console.log("trying to register Cat to window...")
+if (typeof window !== 'undefined') {
+	window['Cat'] = Cat;
+	console.log("it must be done. is Cat in window?")
+	console.log(window['Cat'])
+}
 
 // (function() {
 // 	// const INDETERMINATE_STATUS_STEP_MS = 100;

@@ -7,21 +7,47 @@
 	<meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1.0' />	
 	<title>one hundred thousand pixels</title>
 	<style type='text/css'>
-		/* no custom style */
+		#canvas { filter:blur(0.5px); transform: rotateZ(10deg); transition: all 4.0s ease-in-out; }
+		#canvas {
+			/* pico-8 pixel perfect */
+			image-rendering: optimizeSpeed;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: optimize-contrast;
+			image-rendering: pixelated;
+			-ms-interpolation-mode: nearest-neighbor;
+			border: 0;
+			border-image-width: 0;
+			outline: none;
+		}
+		#canvas:focus { filter:blur(0); transform: none; transition: all 0.1s ease-out; }
+		#canvas.not-loaded { filter:blur(4px); opacity: 0; }
+		#canvas.never-focused { filter:blur(4px); transition: all 0.3s ease-out; }
 	</style>
 	<link id='-gd-engine-icon' rel='icon' type='image/png' href='waiter10.png' />
 </head>
 <body>
 	<h1>tEST...</h1>
 	<div id='canvas-container'>
-		<canvas id='canvas'>
+		<canvas id='canvas' class='not-loaded never-focused' onclick='this.className=""; randomizeCanvasRotationRule();'>
 			HTML5 canvas appears to be unsupported in the current browser.<br />
 			Please try updating or use a different browser.
 		</canvas>
+		<script type='text/javascript'>
+			let canvas = document.getElementById('canvas')
+			function randomizeCanvasRotationRule() {
+				var sheet = document.styleSheets[0]; // todo
+				var rules = sheet.cssRules || sheet.rules;
+				rules[0].style.transform = 'rotate(5,5,5,50deg)';
+				console.log(`randomized rule to ${rules[0].style.transform}`);
+			}
+			canvas.className = 'never-focused';
+			randomizeCanvasRotationRule();
+		</script>
 	</div>
 
 	<script type='text/javascript' src='engine/gd353.js?d=0503&v=3'></script>
-	<script type='text/javascript' src='engine-cat.js?d=0503&v=6'></script>
+	<script type='text/javascript' src='engine-Cat.js?d=0504&v=8'></script>
 	<script type='text/javascript' src='engine/beepbox_synth.js'></script>
 	<script type='text/javascript'>
 		// Cat.boot();

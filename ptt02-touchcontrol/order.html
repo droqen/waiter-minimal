@@ -1,0 +1,109 @@
+<!DOCTYPE html><html>
+<head>
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#Lcz {
+	transform-origin: bottom left;
+	left: 0; transform: scale(2);
+}
+#Rcz {
+	transform-origin: bottom right;
+	right: 0;
+}
+.cz {
+	position: absolute;
+	bottom: 0;
+	/* background-color: red; */
+	width: 100px;
+	height: 100px;
+}
+
+#gamepad { 
+	pointer-events: none;
+}
+#LczDpad {
+	width: 100%; height: 100%;
+	transition: transform .2s;
+	transform: none;
+}
+#LczDpad .wup {
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	margin-top: 10px;
+	font-family: monospace; /* todo make custom */
+}
+#LczDpad .updown {
+	position: absolute;
+	left: 34%;
+	width: 32%;
+	height: 100%;
+	background-color: #dedede;
+	/* border: 1px solid black; */
+	border-radius: 5px;
+}
+#LczDpad .leftright {
+	position: absolute;
+	width: 100%;
+	top: 34%;
+	height: 32%;
+	background-color: #dedede;
+	/* border: 1px solid black; */
+	border-radius: 5px;
+}
+
+</style></head>
+<body>
+<div id="GLRwrapper">
+    <div id="Ggz"></div>
+	<div id="gamepad">
+		<div id="Lcz" class="cz">
+			<div id="LczDpad">
+				<div class="wup">W↑</div>
+				<div class="updown"></div>
+				<div class="leftright"></div>
+			</div>
+		</div>
+		<div id="Rcz" class="cz"></div>
+	</div>
+</div>
+<script>
+	(function(){
+    document.onmousemove = handleMouseMove;
+    // document.ontouchmove = handleTouchMove;
+	document.addEventListener("touchmove", handleTouchMove, {passive:false});
+	document.addEventListener("touchend", handleTouchEnd, {passive:false});
+	let dpad = document.getElementById("LczDpad");
+	let dpadTouch = null;
+	let dpadTouchIdent = null;
+    function handleMouseMove(event) {
+		console.log(eventCoordsToBounded(event, dpad));
+		updateLczDpad3D();
+	}
+    function handleTouchMove(event) {
+		for(let i=0; i<event.touches.length;i++) {
+			console.log(eventCoordsToBounded(event.touches[i], dpad));
+		}
+		updateLczDpad3D();
+		event.preventDefault();
+	}
+    function handleTouchEnd(event) {
+		dpad.style.transform = "none";
+	}
+	function updateLczDpad3D() {
+		dpad.style.transform = "rotate3d(1,0,0,15deg) rotate3d(0,1,0,15deg)";
+	}
+	const clamp = (a, min = 0, max = 1) => Math.min(max, Math.max(min, a));
+	const invlerp = (x, y, a) => clamp((a - x) / (y - x));
+	function eventCoordsToBounded(event, el) {
+		let bcr = el.getBoundingClientRect();
+		let bxy = {x: invlerp(bcr.left, bcr.right, event.clientX), y: invlerp(bcr.top, bcr.bottom, event.clientY)};
+		if (bxy.x > 0 && bxy.x < 1 && bxy.y > 0 && bxy.y < 1) { 	return bxy; } else { return null; }
+	}
+	})();
+</script>
+</body>
+</html>

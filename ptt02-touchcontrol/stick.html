@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html><head><title>touchoncoltr</title>
+<style>
+	* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  margin: auto;
+  width: 100vw;
+}
+
+#wrapper {
+  border: 1px solid black;
+  width: 300px;
+  height: 300px;
+}
+
+.joystick {
+  background-color: blue;
+  border-radius: 100%;
+  cursor: pointer;
+  height: 100%;
+  user-select: none;
+  width: 100%;
+}
+</style>
+
+</head><body>
+
+	<!--
+    stick controls by AndrewGreenh
+    https://www.reddit.com/r/javascript/comments/4wve38/comment/d6aa8xg/
+  -->
+
+	<div id="main">
+		<div id="wrapper">
+		</div>
+	</div>
+	<!-- Please block my touch controls!
+	<img src="waiter100.png"> -->
+
+<script>
+const joystick = createJoystick(document.getElementById('wrapper'));
+
+// setInterval(() => console.log(joystick.getPosition()), 16);
+
+function createJoystick(parent) {
+  const maxDiff = 100;
+  const stick = document.createElement('div');
+  stick.classList.add('joystick');
+
+  stick.addEventListener('mousedown', handleMouseDown, {passive:false});
+  document.addEventListener('mousemove', handleMouseMove, {passive:false});
+  document.addEventListener('mouseup', handleMouseUp, {passive:false});
+  stick.addEventListener('touchstart', handleMouseDown, {passive:false});
+  document.addEventListener('touchmove', handleMouseMove, {passive:false});
+  document.addEventListener('touchend', handleMouseUp, {passive:false});
+
+  let dragStart = null;
+  let currentPos = { x: 0, y: 0 };
+
+  function handleMouseDown(event) {
+    stick.style.transition = '0s';
+    if (event.changedTouches) {
+      dragStart = {
+        x: event.changedTouches[0].clientX,
+        y: event.changedTouches[0].clientY,
+      };
+      return;
+    }
+    dragStart = {
+      x: event.clientX,
+      y: event.clientY,
+    };
+
+  }
+
+  function handleMouseMove(event) {
+    if (dragStart === null) return;
+    event.preventDefault();
+    if (event.changedTouches) {
+      event.clientX = event.changedTouches[0].clientX;
+      event.clientY = event.changedTouches[0].clientY;
+    }
+    const xDiff = event.clientX - dragStart.x;
+    const yDiff = event.clientY - dragStart.y;
+    const angle = Math.atan2(yDiff, xDiff);
+		const distance = Math.min(maxDiff, Math.hypot(xDiff, yDiff));
+		const xNew = distance * Math.cos(angle);
+		const yNew = distance * Math.sin(angle);
+    stick.style.transform = `translate3d(${xNew}px, ${yNew}px, 0px)`;
+    currentPos = { x: xNew, y: yNew };
+  }
+
+  function handleMouseUp(event) {
+    if (dragStart === null) return;
+    stick.style.transition = '.2s';
+    stick.style.transform = `translate3d(0px, 0px, 0px)`;
+    dragStart = null;
+    currentPos = { x: 0, y: 0 };
+  }
+
+  parent.appendChild(stick);
+  return {
+    getPosition: () => currentPos,
+  };
+}
+
+
+	// addEventListener("touchstart", function(event){ pico8_buttons_event(event, 0); }, {passive: false});
+	// addEventListener("touchmove",  function(event){ pico8_buttons_event(event, 1); }, {passive: false});
+	// addEventListener("touchend",   function(event){ pico8_buttons_event(event, 2); }, {passive: false});
+</script>
+
+</body></html>

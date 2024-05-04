@@ -7,7 +7,12 @@
 	<meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1.0' />	
 	<title>one hundred thousand pixels</title>
 	<style type='text/css'>
-		#canvas-container { perspective: 500px; }
+		html, body { margin: 0; border: 0 none; padding: 0; min-height: 100vh; }
+		#canvas-container { position: relative; min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 		#canvas { filter:blur(1px); transition: all 0.5s ease-in-out; }
 		#canvas {
 			/* pico-8 pixel perfect */
@@ -21,40 +26,50 @@
 			border-image-width: 0;
 			outline: none;
 		}
-		#canvas:focus { filter:blur(0); transform: none; box-shadow: none; transition: all 0.1s ease-out; }
-		#canvas.not-loaded { filter:blur(4px); opacity: 0; }
+		#canvas:focus { filter:blur(0); transition: all 0.1s ease-out; }
 		#canvas.never-focused { filter:blur(4px); transition: all 0.3s ease-out; }
+		#canvas-curtain {  position: absolute; width: 100%; height: 100%; pointer-events: none;
+			background: #888; opacity: 0; 
+			transition: background .25s ease, opacity .25s ease;
+		}
+		.loading #canvas { filter:blur(4px); }
+		.loading #canvas-curtain { opacity: 1; transition: background .25s ease, opacity .5s ease; }
 	</style>
 	<link id='-gd-engine-icon' rel='icon' type='image/png' href='waiter10.png' />
 </head>
 <body>
-	<h1>tEST...</h1>
-	<div id='canvas-container'>
-		<canvas id='canvas' class='not-loaded never-focused' onclick='firstTimeFocus();'>
+	<!-- <h1>tEST...</h1> -->
+	<div id='canvas-container' class='loading'>
+		<canvas id='canvas' class='never-focused' onclick='firstTimeFocus();'>
 			HTML5 canvas appears to be unsupported in the current browser.<br />
 			Please try updating or use a different browser.
 		</canvas>
+		<div id='canvas-curtain'> </div>
 		<script type='text/javascript'>
-			let canvas = document.getElementById('canvas')
-			function randomizeCanvasRotationRule() {
-				// var sheet = document.styleSheets[0]; // todo
-				// var rules = sheet.cssRules || sheet.rules;
-				// rules[0].style.transform = 'rotate(5,5,5,50deg)';
-				// console.log(`randomized rule to ${rules[0].style.transform}`);
-			}
+			var canvasCtr = document.getElementById('canvas-container');
+			var canvas = document.getElementById('canvas');
 			canvas.className = 'never-focused';
-			randomizeCanvasRotationRule();
+			let fitCanvasToContainer = function() {
+				let w = canvas.clientWidth;
+				let h = canvas.clientHeight;
+				let w2 = canvasCtr.clientWidth;
+				let h2 = canvasCtr.clientHeight;
+				let wr = w2/w; let hr = h2/h;
+				console.log()
+				canvas.style.transform = `scale(${Math.floor(Math.max(1,Math.min(wr,hr)))})`;
+			}
+			fitCanvasToContainer();
+			window.addEventListener("resize", fitCanvasToContainer);
 		</script>
 	</div>
 
 	<script type='text/javascript' src='engine/gd353.js?d=0503&v=3'></script>
-	<script type='text/javascript' src='engine-Cat.js?d=0504&v=10'></script>
+	<script type='text/javascript' src='engine-Cat.js?d=0504&v=28'></script>
 	<script type='text/javascript' src='engine/beepbox_synth.js'></script>
 	<script type='text/javascript'>
 		let synth = new beepbox.Synth("9n31sbk0l00e05t0Ta7g0fj07r1i0o432T1v1u52f0qwx10v311d08A1F2B4Q00b0Pf519E3b662876T0v1u00f0qg01d04w1h0E0T1v1ue3f30rc2mc2i2q023d19AbF8B5Q024bPa872E26327aT2v1u15f10w4qw02d03w0E0b4z4z0000000h8h8y0000014h000000004h400000000p22nyFBOqK28V0zHHH8WxmpuqjbTjljlBkbj9jj9jHEhVp6CzWSHSGGOfrOG1qaaZFfcSIGYzPugITfIMzELcFGOG5PICIKKCGIVkRaIHGZfbOCzN170At97ihQAt97ihQAui4tx7ihQAt97ihQAt960000");
 		var firstTimeFocus = function(){
 			synth.play();
-			let canvas = document.getElementById('canvas')
 			canvas.className = '';
 			firstTimeFocus = function(){}; // blank the function
 		}

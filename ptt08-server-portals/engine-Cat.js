@@ -28,10 +28,19 @@ Cat = (function () {
 
 	var load = function(pack) {
 		if (engine==null) {console.log("Cat.load failed - no engine"); return;}
+		document.getElementById("canvas-container").className = 'loading';
 		var promise = engine.startGame({"args":[],"mainPack":pack,"onProgress":_prog});
+		// NOTE: onProgress is not called on subsequent loads, only the first load
 		promise.then(
-			()=>{console.log("Cat.load succeeded"); engineGameLoaded=(pack==NONE_PACK); gameProperties={};},
-			(err)=>{console.log("Cat.load failed - err "+(err.message||err));}
+			()=>{
+				console.log("Cat.load succeeded"); engineGameLoaded=(pack==NONE_PACK); gameProperties={};
+				setTimeout(()=>{
+				document.getElementById("canvas-container").className = '';
+				}, 250);
+			},
+			(err)=>{
+				console.log("Cat.load failed - err "+(err.message||err));
+			}
 		);
 	}
 
@@ -45,7 +54,10 @@ Cat = (function () {
 		console.log("updated game properties:");
 		console.log(gameProperties);
 		if (k == 'BG') {
-			document.getElementById("canvas-container").style.background = v;
+			setTimeout(()=>{
+				document.getElementById("canvas-container").style.background = v;
+				document.getElementById("canvas-curtain").style.backgroundColor = v;
+			}, 1);
 		}
 	}
 

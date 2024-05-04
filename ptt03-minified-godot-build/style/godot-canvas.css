@@ -1,0 +1,26 @@
+/* original fullscreen canvas classes defined by godot's template */
+
+body {
+	touch-action: none;
+	margin: 0;
+	border: 0 none;
+	padding: 0;
+	text-align: center;
+	background-color: black;
+}
+
+div#canvas-container {
+	position: relative;
+	height: 100%;
+}
+
+#canvas {
+	position: absolute;
+	display: block;
+	margin: 0;
+	color: white;
+}
+
+#canvas:focus {
+	outline: none;
+}

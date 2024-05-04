@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://waiter/waiter_setup.gd" type="Script" id=1]
 [ext_resource path="res://waiter/waiter100.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://waiter/pin/waiter_pin_man.gd" type="Script" id=4]
 [ext_resource path="res://ButtonInputExample.gd" type="Script" id=5]
 [ext_resource path="res://droqens_fonts/quizardry.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://gumdrop.ogg" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -53,3 +54,6 @@ texture = ExtResource( 2 )
 
 [node name="Pin" type="Node" parent="ButtonInputExample"]
 script = ExtResource( 3 )
+
+[node name="gumdrop" type="AudioStreamPlayer" parent="ButtonInputExample"]
+stream = ExtResource( 7 )

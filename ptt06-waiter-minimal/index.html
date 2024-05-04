@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
+<head>
+	<meta charset='utf-8' />
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1.0' />	
+	<title>one hundred thousand pixels</title>
+	<style type='text/css'>
+		/* no custom style */
+	</style>
+	<link id='-gd-engine-icon' rel='icon' type='image/png' href='waiter10.png' />
+</head>
+<body>
+	<h1>tEST...</h1>
+	<div id='canvas-container'>
+		<canvas id='canvas'>
+			HTML5 canvas appears to be unsupported in the current browser.<br />
+			Please try updating or use a different browser.
+		</canvas>
+	</div>
+
+	<script type='text/javascript' src='engine/gd353.js?d=0503&v=3'></script>
+	<script type='text/javascript' src='engine-cat.js?d=0503&v=6'></script>
+	<script type='text/javascript' src='engine/beepbox_synth.js'></script>
+	<script type='text/javascript'>
+		// Cat.boot();
+	</script>
+	<!-- <script type='text/javascript'>
+		function start_new_game() {
+			console.log("Start New Game");
+			console.log(engine);
+			var promise = engine.startGame(
+				{
+					"args":[], // THIS IS **REQUIRED**.
+					// "executable":"indexb",
+					"mainPack":"gamefiles/index.pck",
+				} 
+			);
+			console.log(promise);
+			promise.then(() => {
+					console.log("Hey, omg! the game reload worked!");
+					// setStatusMode('hidden');
+					// initializing = false;
+				}, (err)=>{var err=err.message||err;console.log(err);});
+		}
+		function request_quit() {
+			engine.requestQuit();
+		}
+	</script> -->
+</body>
+</html>
+

@@ -1,13 +1,61 @@
 <!DOCTYPE html>
-<html><head><title>touchoncoltr</title></head><body>
+<html><head><title>touchoncoltr</title>
+<style>
+	body {
+		margin: 0;
+	}
+	.ctrlzone, .gfxzone {
+		/* border: 1px solid black; */
+		/* display:inline-block; */
+	}
+	.gfxzone {
+		background-color: gray;
+		background-image: url("waiter10.png");
+		background-size: cover;
+	}
+	.ctrlzone {
+		background-color: orange;
+	}
+	.p8_pixel_perfect{
+				image-rendering: optimizeSpeed;
+				image-rendering: -moz-crisp-edges;
+				image-rendering: -webkit-optimize-contrast;
+				image-rendering: optimize-contrast;
+				image-rendering: pixelated;
+				-ms-interpolation-mode: nearest-neighbor;
+				/* border: 0px; */
+	}
 
-	Please block my touch controls!
-	<img src="waiter100.png">
+	#Lcz { float: left; width: 22%; height: 400px; }
+	#Ggz { float: left; width: 56%; height: 400px; }
+	#Rcz { float: right; width: 22%; height: 400px; }
+	
+	@media only screen and (max-width: 300px){
+		.one{width: 50%}
+		.two{width: 100%}
+		.three{width: 50%}
+	}
 
+</style>
+</head>
+<body>
+	<pre id="Dbg" style="position: fixed;">debug data go here</pre>
+	<div id="Ggz" class="gfxzone p8_pixel_perfect"> </div>
+	<div id="Lcz" class="ctrlzone"> </div>
+	<div id="Rcz" class="ctrlzone"> </div>
 <script>
-	addEventListener("touchstart", function(event){ pico8_buttons_event(event, 0); }, {passive: false});
-	addEventListener("touchmove",  function(event){ pico8_buttons_event(event, 1); }, {passive: false});
-	addEventListener("touchend",   function(event){ pico8_buttons_event(event, 2); }, {passive: false});
-</script>
+	var czs = [ // controlzones
+		document.getElementById("Lcz"),
+		document.getElementById("Rcz")
+	];
+	var gz = document.getElementById("Ggz");
+	var Dbg = document.getElementById("Dbg");
+	setInterval(() => {
+		var outs = "";
+		outs += `Game size = ${gz.offsetWidth}, ${gz.offsetHeight}`;
 
-</body></html>
+		Dbg.innerText = outs;
+	}, 100);
+</script>
+</body>
+</html>

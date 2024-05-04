@@ -8,7 +8,7 @@
 	<title>one hundred thousand pixels</title>
 	<style type='text/css'>
 		#canvas-container { perspective: 500px; }
-		#canvas { filter:blur(0.5px); transform: rotateX(17.5deg); transform-origin: bottom; box-shadow: 0 4px 2px black; transition: all 4.0s ease-in-out; }
+		#canvas { filter:blur(1px); transition: all 0.5s ease-in-out; }
 		#canvas {
 			/* pico-8 pixel perfect */
 			image-rendering: optimizeSpeed;
@@ -30,7 +30,7 @@
 <body>
 	<h1>tEST...</h1>
 	<div id='canvas-container'>
-		<canvas id='canvas' class='not-loaded never-focused' onclick='this.className=""; randomizeCanvasRotationRule();'>
+		<canvas id='canvas' class='not-loaded never-focused' onclick='firstTimeFocus();'>
 			HTML5 canvas appears to be unsupported in the current browser.<br />
 			Please try updating or use a different browser.
 		</canvas>
@@ -48,10 +48,16 @@
 	</div>
 
 	<script type='text/javascript' src='engine/gd353.js?d=0503&v=3'></script>
-	<script type='text/javascript' src='engine-Cat.js?d=0504&v=9'></script>
+	<script type='text/javascript' src='engine-Cat.js?d=0504&v=10'></script>
 	<script type='text/javascript' src='engine/beepbox_synth.js'></script>
 	<script type='text/javascript'>
-		// Cat.boot();
+		let synth = new beepbox.Synth("9n31sbk0l00e05t0Ta7g0fj07r1i0o432T1v1u52f0qwx10v311d08A1F2B4Q00b0Pf519E3b662876T0v1u00f0qg01d04w1h0E0T1v1ue3f30rc2mc2i2q023d19AbF8B5Q024bPa872E26327aT2v1u15f10w4qw02d03w0E0b4z4z0000000h8h8y0000014h000000004h400000000p22nyFBOqK28V0zHHH8WxmpuqjbTjljlBkbj9jj9jHEhVp6CzWSHSGGOfrOG1qaaZFfcSIGYzPugITfIMzELcFGOG5PICIKKCGIVkRaIHGZfbOCzN170At97ihQAt97ihQAui4tx7ihQAt97ihQAt960000");
+		var firstTimeFocus = function(){
+			synth.play();
+			let canvas = document.getElementById('canvas')
+			canvas.className = '';
+			firstTimeFocus = function(){}; // blank the function
+		}
 	</script>
 	<!-- <script type='text/javascript'>
 		function start_new_game() {

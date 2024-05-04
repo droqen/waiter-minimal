@@ -44,7 +44,7 @@ Cat = (function () {
 		gameProperties[k]=v;
 		console.log("updated game properties:");
 		console.log(gameProperties);
-		if (k == 'bg_color') {
+		if (k == 'BG') {
 			document.getElementById("canvas-container").style.background = v;
 		}
 	}
